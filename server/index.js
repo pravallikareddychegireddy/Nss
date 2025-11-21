@@ -13,7 +13,7 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: ['https://nss-2-jpp3.onrender.com'],
+  origin: process.env.CLIENT_URL || 'http://localhost:5173',
   credentials: true
 }));
 app.use(express.json());
@@ -25,6 +25,22 @@ app.use('/api/events', require('./routes/events'));
 app.use('/api/participation', require('./routes/participation'));
 app.use('/api/reports', require('./routes/reports'));
 app.use('/api/users', require('./routes/users'));
+
+// Root route for health check
+app.get('/', (req, res) => {
+  res.json({ 
+    message: 'NSS Portal Backend API is running!',
+    status: 'healthy',
+    timestamp: new Date().toISOString(),
+    endpoints: {
+      auth: '/api/auth',
+      events: '/api/events',
+      participation: '/api/participation',
+      reports: '/api/reports',
+      users: '/api/users'
+    }
+  });
+});
 
 // MongoDB Connection
 mongoose.connect(process.env.MONGODB_URI)
