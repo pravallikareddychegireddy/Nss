@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const instance = axios.create({
-  baseURL: 'http://localhost:5000/api',
+  baseURL: 'https://nss-bfjo.onrender.com',
   headers: {
     'Content-Type': 'application/json'
   }
