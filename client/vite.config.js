@@ -7,7 +7,7 @@ export default defineConfig({
     port: 5173,
     proxy: {
       '/api': {
-        target: 'https://nss-bfjo.onrender.com',
+        target: 'https://nss-backend-ks1k.onrender.com',
         changeOrigin: true
       }
     }
